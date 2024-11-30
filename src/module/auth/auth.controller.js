@@ -12,10 +12,10 @@ class AuthController {
   async sendOTP(req, res, next) {
     try {
       const {
-        body: { phone, firstName, lastName },
+        body: { phone, nationalId },
       } = req;
-      await sendOtpValidation.validateAsync({ phone, firstName, lastName });
-      const otp = await this.#service.sendOTP({ phone, firstName, lastName });
+      await sendOtpValidation.validateAsync({ phone, nationalId });
+      const otp = await this.#service.sendOTP({ phone, nationalId });
       res.status(httpCodes.OK).send({
         statusCode: res.statusCode,
         data: {

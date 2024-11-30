@@ -6,13 +6,11 @@
  *     type: object
  *     required:
  *        -  phone
+ *        -  nationalId
  *     properties:
- *      firstName:
+ *      nationalId:
  *       type: string
- *       example: Ehsan
- *      lastName:
- *       type: string
- *       example: Mahmood Abadi
+ *       example: 11111111111
  *      phone:
  *       type: string
  *       example: 09xxxxxxxxx
