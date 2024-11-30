@@ -6,6 +6,7 @@ const {
   NotFoundHandler,
 } = require("./src/common/exceptions/not-found-handler");
 const { swaggerConfig } = require("./src/config/swagger.config");
+const cookieParser = require('cookie-parser')
 const main = async () => {
   // initialilize app
   const app = express();
@@ -14,6 +15,7 @@ const main = async () => {
   app.use(express.urlencoded({ extended: true }));
   require("./src/config/mongoose.config");
   swaggerConfig(app)
+  app.use(cookieParser())
   // routing
   app.use(MainRouter);
   ErrorHandler(app);

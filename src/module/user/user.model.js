@@ -5,9 +5,9 @@ const otpSchema = new Schema({
 });
 const userSchema = new Schema(
   {
-    firstName: { type: String,default:'' },
-    lastName: { type: String,default:'' },
-    email: { type: String ,default:''},
+    firstName: { type: String, default: "" },
+    lastName: { type: String, default: "" },
+    email: { type: String, default: "" },
     phone: { type: String },
     nationalId: { type: String, unique: true },
     isVerified: { type: Boolean, default: false },
