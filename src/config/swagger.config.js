@@ -16,7 +16,12 @@ const swaggerConfig = (app) => {
           url: "http://localhost:3000",
         },
       ],
-      tags: [],
+      tags: [
+        {
+          name: "Auth",
+          description: "Auth modules and routes",
+        },
+      ],
     },
     apis: [process.cwd() + "/src/**/*.swagger.js"],
   });
