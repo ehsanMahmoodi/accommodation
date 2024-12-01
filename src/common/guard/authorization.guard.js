@@ -3,7 +3,7 @@ const { AuthorizationMessages } = require("./authorization.messages");
 const { verifyJwtToken } = require("../utils/functions");
 const { UserModel } = require("../../module/user/user.model");
 
-const Authorization = (req, res, next) => {
+const Authorization = async (req, res, next) => {
   try {
     const { access_token } = req.cookies;
     if (!access_token)
@@ -14,7 +14,7 @@ const Authorization = (req, res, next) => {
       access_token,
       process.env.ACCESS_TOKEN_SECRET_KEY
     );
-    const user = UserModel.findById(userId);
+    const user = await UserModel.findById(userId);
     if (!user)
       throw new createHttpError.NotFound(AuthorizationMessages.NotFound);
     req.user = { userId: user._id };

@@ -1,5 +1,6 @@
 const createHttpError = require("http-errors");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 const verifyJwtToken = (token, secretKey) => {
   let data;
   const verifyToken = jwt.verify(token, secretKey, function (err, decode) {
@@ -16,4 +17,13 @@ const verifyJwtToken = (token, secretKey) => {
     throw new createHttpError.Unauthorized("لطفا وارد حساب کاربری خود شوید.");
   return data;
 };
-module.exports = { verifyJwtToken };
+function getListOfImagesFromRequest(req) {
+  if (req?.fileUploadPath && req?.fileName && req?.files?.length > 0) {
+    return req.files.map((file) =>
+      path.join(req.fileUploadPath, file.filename).replace(/\\/g, "/")
+    );
+  }
+  return [];
+}
+
+module.exports = { verifyJwtToken, getListOfImagesFromRequest };
