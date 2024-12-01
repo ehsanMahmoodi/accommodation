@@ -2,7 +2,7 @@
  * @swagger
  *  components:
  *   schemas:
- *    accommodationCMP:
+ *    createAccommodationCMP:
  *     type: object
  *     required:
  *        -  title
@@ -46,7 +46,7 @@
  *             type: number
  *           example: [29.633708, 52.530075]
  *           description: مختصات جغرافیایی
- *    accommodationDEF:
+ *    createAccommodationDEF:
  *     type: object
  *     properties:
  *      statusCode:
@@ -58,6 +58,18 @@
  *        message:
  *         type: string
  *         example: اقامتگاه جدید باموفقیت ایجاد شد.
+ *    removeAccommodationDEF:
+ *     type: object
+ *     properties:
+ *      statusCode:
+ *       type: number
+ *       example: 200
+ *      data:
+ *       type: object
+ *       properties:
+ *        message:
+ *         type: string
+ *         example: اقامتگاه باموفقیت حذف شد.
  */
 /**
  * @swagger
@@ -70,12 +82,32 @@
  *     content:
  *      multipart/form-data:
  *       schema:
- *        $ref: './#/components/schemas/accommodationCMP'
+ *        $ref: './#/components/schemas/createAccommodationCMP'
  *    responses:
  *     200:
  *      content:
  *       application/json:
  *        schema:
- *         $ref: '#/components/schemas/accommodationDEF'
+ *         $ref: '#/components/schemas/createAccommodationDEF'
+ */
+/**
+ * @swagger
+ *  /accommodation/remove/{id}:
+ *   delete:
+ *    summary: delete accommodation by id
+ *    tags:
+ *      - Accommodation
+ *    parameters:
+ *       - in: path
+ *         name: id
+ *         type: string
+ *         required: true
+ *         description: accommodationID
+ *    responses:
+ *     200:
+ *      content:
+ *       application/json:
+ *        schema:
+ *         $ref: '#/components/schemas/removeAccommodationDEF'
  */
 

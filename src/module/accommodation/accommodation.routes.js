@@ -7,6 +7,7 @@ router.post(
   uploadFile("accommodations", "image").array("images", 10),
   accommodationController.create
 );
+router.delete("/remove/:id", accommodationController.remove);
 module.exports = {
   AccommodationRouter: router,
 };

@@ -16,5 +16,11 @@ class AccommodationService {
       );
     return true;
   }
+  async remove(id) {
+    const accommodation = await this.#model.findOneAndDelete({ _id: id });
+    if (!accommodation)
+      throw new createHttpError.NotFound(AccommodationMessages.NotFound);
+    return true;
+  }
 }
 module.exports = new AccommodationService();

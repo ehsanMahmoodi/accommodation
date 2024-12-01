@@ -35,5 +35,19 @@ class AccommodationController {
       next(error);
     }
   }
+  async remove(req,res,next){
+    try {
+      const {params:{id}}=req
+      await this.#service.remove(id)
+      res.status(httpCodes.OK).send({
+        statusCode:res.statusCode,
+        data:{
+          messages:AccommodationMessages.Deleted
+        }
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 module.exports = new AccommodationController();
