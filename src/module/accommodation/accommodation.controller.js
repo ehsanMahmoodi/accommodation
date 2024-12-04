@@ -19,6 +19,8 @@ class AccommodationController {
       let images = getListOfImagesFromRequest(req);
       if (body.address && typeof body.address == "string")
         body.address = JSON.parse(body.address);
+      if (body.options && typeof body.options == "string")
+        body.options = JSON.parse(body.options);
       await createAccommodationValidation.validateAsync({
         ...body,
         host,
@@ -35,18 +37,30 @@ class AccommodationController {
       next(error);
     }
   }
-  async remove(req,res,next){
+  async remove(req, res, next) {
     try {
-      const {params:{id}}=req
-      await this.#service.remove(id)
+      const {
+        params: { id },
+      } = req;
+      await this.#service.remove(id);
       res.status(httpCodes.OK).send({
-        statusCode:res.statusCode,
-        data:{
-          messages:AccommodationMessages.Deleted
-        }
-      })
+        statusCode: res.statusCode,
+        data: {
+          messages: AccommodationMessages.Deleted,
+        },
+      });
     } catch (error) {
-      next(error)
+      next(error);
+    }
+  }
+  async getAll(req, res, next) {
+    try {
+      const accommodations = await this.#service.getAll();
+      res.send({
+        accommodations,
+      });
+    } catch (error) {
+      next(error);
     }
   }
 }

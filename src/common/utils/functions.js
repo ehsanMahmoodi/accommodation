@@ -1,6 +1,7 @@
 const createHttpError = require("http-errors");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const slugify = require("slugify");
 const verifyJwtToken = (token, secretKey) => {
   let data;
   const verifyToken = jwt.verify(token, secretKey, function (err, decode) {
@@ -25,5 +26,11 @@ function getListOfImagesFromRequest(req) {
   }
   return [];
 }
-
-module.exports = { verifyJwtToken, getListOfImagesFromRequest };
+const generateSlug = (text) => {
+  return slugify(text, {
+    replacement: "-",
+    lower: true,
+    trim: true,
+  });
+};
+module.exports = { verifyJwtToken, getListOfImagesFromRequest, generateSlug };

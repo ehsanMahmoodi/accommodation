@@ -18,10 +18,12 @@ const accommodationSchema = new Schema(
         coordinates: [29.633708, 52.530075],
       },
     },
+    options: { type: Array, default: [] },
   },
   {
     timestamps: true,
   }
 );
+
 const AccommodationModel = model("accommodation", accommodationSchema);
 module.exports = { AccommodationModel };

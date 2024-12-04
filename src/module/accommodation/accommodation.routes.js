@@ -8,6 +8,7 @@ router.post(
   accommodationController.create
 );
 router.delete("/remove/:id", accommodationController.remove);
+router.get("/", accommodationController.getAll);
 module.exports = {
   AccommodationRouter: router,
 };

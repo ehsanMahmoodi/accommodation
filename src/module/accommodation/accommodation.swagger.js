@@ -46,6 +46,16 @@
  *             type: number
  *           example: [29.633708, 52.530075]
  *           description: مختصات جغرافیایی
+ *      options:
+ *       type: array
+ *       description: جزئیات آپشن
+ *       items:
+ *        type: object
+ *        properties:
+ *         optionKey:
+ *          type: string
+ *          description: عنوان جزئیات 
+ *          example: optionValue
  *    createAccommodationDEF:
  *     type: object
  *     properties:
@@ -109,5 +119,16 @@
  *       application/json:
  *        schema:
  *         $ref: '#/components/schemas/removeAccommodationDEF'
+ */
+/**
+ * @swagger
+ *  /accommodation/:
+ *   get:
+ *    summary: get all accommodation
+ *    tags:
+ *      - Accommodation
+ *    responses:
+ *     200:
+ *      description: success
  */
 

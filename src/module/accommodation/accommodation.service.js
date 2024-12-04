@@ -22,5 +22,8 @@ class AccommodationService {
       throw new createHttpError.NotFound(AccommodationMessages.NotFound);
     return true;
   }
+  async getAll() {
+    return await this.#model.find();
+  }
 }
 module.exports = new AccommodationService();
