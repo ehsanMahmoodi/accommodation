@@ -19,6 +19,7 @@ const accommodationSchema = new Schema(
       },
     },
     options: { type: Array, default: [] },
+    status: { type: String, enum: ["active", "de-active"], default: "active" },
   },
   {
     timestamps: true,
