@@ -2,6 +2,7 @@ const autoBind = require("auto-bind");
 const createHttpError = require("http-errors");
 const { PermissionModel } = require("./permissions.model");
 const { PermissionMessages } = require("./permissions.messages");
+const { isValidObjectId } = require("mongoose");
 class PermissionService {
   #model;
   constructor() {
@@ -27,12 +28,16 @@ class PermissionService {
     return true;
   }
   async remove(id){
+    if(!isValidObjectId(id))
+          throw new createHttpError.BadRequest('id معتبر نیست.')
     const permission = await this.#model.findOneAndDelete({_id:id})
     if(!permission)
       throw new createHttpError.NotFound(PermissionMessages.NotFound)
     return true
   }
   async findById(id){
+    if(!isValidObjectId(id))
+          throw new createHttpError.BadRequest('id معتبر نیست.')
     const permission = await this.#model.findById(id)
     if(!permission)
       throw new createHttpError.NotFound(PermissionMessages.NotFound)

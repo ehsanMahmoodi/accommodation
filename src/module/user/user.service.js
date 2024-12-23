@@ -29,6 +29,8 @@ class UserService {
     return user;
   }
   async getProfile(userId) {
+    if(!isValidObjectId(userId))
+      throw new createHttpError.BadRequest('userId معتبر نیست.')
     const user = await this.#model.findById(userId, {
       otp: 0,
       __v: 0,
