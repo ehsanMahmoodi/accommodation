@@ -5,13 +5,13 @@
  *    createReservationCMP:
  *     type: object
  *     required:
- *        -  accommodation
+ *        -  accommodation_id
  *        -  startDate
  *        -  endDate
  *     properties:
- *      accommodation:
+ *      accommodation_id:
  *       type: string
- *       example: accommodationId
+ *       example: accommodation_id
  *      startDate:
  *       type: string
  *       description: تاریخ شروع رزرو

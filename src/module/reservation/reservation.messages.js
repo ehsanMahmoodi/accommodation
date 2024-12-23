@@ -6,5 +6,6 @@ const ReservationMessages = Object.freeze({
   UpdatedError: "مشکلی در به‌روزرسانی رزور پیش آمده لطفا مجددا امتحان کنید.",
   Deleted: "رزور باموفقیت حذف شد.",
   DeletedError: "مشکلی در حذف رزور پیش آمده لطفا مجددا امتحان کنید.",
+  InvalidObjectId:"id معتبر نیست"
 });
 module.exports = { ReservationMessages };

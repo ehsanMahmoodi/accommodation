@@ -9,6 +9,7 @@ const {
 } = require("../accommodation/accommodation.messages");
 const { UserMessages } = require("../user/user.messages");
 const { ReservationMessages } = require("./reservation.messages");
+const { isValidObjectId } = require("mongoose");
 class ReservationService {
   #model;
   #accommodationModel;
@@ -21,13 +22,14 @@ class ReservationService {
   }
   async create(reservationDTO) {
     const accommodation = await this.checkExistAccommodation(
-      reservationDTO.accommodation
+      reservationDTO.accommodation_id
     );
     await this.checkExistUser(reservationDTO.guest);
     const dayNumber = this.validateDate(
       reservationDTO.startDate,
       reservationDTO.endDate
     );
+    console.log(dayNumber);
     const totalPrice = dayNumber * accommodation?.price;
     reservationDTO.totalPrice = totalPrice;
     const newReservertion = await this.#model.create(reservationDTO);
@@ -49,11 +51,11 @@ class ReservationService {
     return true;
   }
   validateDate(start, end) {
-    if (!isAfter(new Date(start), new Date(end)))
+    if (isAfter(new Date(start), new Date(end)))
       throw new createHttpError.BadRequest(
         "تاریخ شروع بعد از تاریخ پایان نمی تواند باشد"
       );
-    if (!isBefore(new Date(end), new Date(start)))
+    if (isBefore(new Date(end), new Date(start)))
       throw new createHttpError.BadRequest(
         "تاریخ پایان بعد از تاریخ شروع نمی تواند باشد"
       );
@@ -67,6 +69,8 @@ class ReservationService {
     return await this.#model.find();
   }
   async remove(id) {
+    if (!isValidObjectId(id))
+      throw new createHttpError.BadRequest(ReservationMessages.InvalidObjectId);
     const reservation = await this.#model.findByIdAndDelete({ _id: id });
     if (!reservation)
       throw new createHttpError.InternalServerError(
