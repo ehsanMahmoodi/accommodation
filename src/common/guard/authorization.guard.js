@@ -1,5 +1,5 @@
 const createHttpError = require("http-errors");
-const { AuthorizationMessages } = require("./authorization.messages");
+const { AuthorizationMessages } = require("./messages");
 const { verifyJwtToken } = require("../utils/functions");
 const { UserModel } = require("../../module/user/user.model");
 
