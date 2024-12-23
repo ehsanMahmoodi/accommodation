@@ -18,9 +18,14 @@ const swaggerConfig = (app) => {
       ],
       tags: [
         {
-          name: "Reservation",
-          description: "Reservation modules and routes",
+          name: "Auth",
+          description: "Auth modules and routes",
         },
+        {
+          name: "User",
+          description: "User modules and routes",
+        },
+        
         {
           name: "Accommodation-Option",
           description: "Accommodation-Option modules and routes",
@@ -30,12 +35,16 @@ const swaggerConfig = (app) => {
           description: "Accommodation modules and routes",
         },
         {
-          name: "User",
-          description: "User modules and routes",
+          name: "Reservation",
+          description: "Reservation modules and routes",
         },
         {
-          name: "Auth",
-          description: "Auth modules and routes",
+          name: "Permission",
+          description: "Permission modules and routes",
+        },
+        {
+          name: "Role",
+          description: "Role modules and routes",
         },
       ],
     },
